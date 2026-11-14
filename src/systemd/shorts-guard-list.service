@@ -1,0 +1,17 @@
+[Unit]
+Description=shorts-guard local filter list (HTTPS)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -I /usr/local/lib/shorts-guard/serve.py
+LoadCredential=srv.key:/usr/local/lib/shorts-guard/tls/srv.key
+DynamicUser=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+NoNewPrivileges=yes
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

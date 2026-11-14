@@ -1,0 +1,11 @@
+[Unit]
+Description=shorts-guard enforce at boot
+Before=display-manager.service
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -I /usr/local/lib/shorts-guard/apply.py
+
+[Install]
+WantedBy=multi-user.target

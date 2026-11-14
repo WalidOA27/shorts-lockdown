@@ -1,0 +1,5 @@
+[Unit]
+Description=Watch remote shorts-guard (read-only)
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/shorts-watch-check

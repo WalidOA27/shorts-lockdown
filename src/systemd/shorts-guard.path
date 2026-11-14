@@ -1,0 +1,15 @@
+[Unit]
+Description=shorts-guard watch outputs
+
+[Path]
+PathChanged=/etc/librewolf/policies/policies.json
+PathChanged=/etc/firefox/policies/policies.json
+PathChanged=/etc/yt-dlp.conf
+PathChanged=/usr/lib/librewolf/distribution/policies.json
+PathChanged=/usr/lib/firefox/distribution
+PathChanged=/etc/systemd/system/shorts-guard.timer
+PathChanged=/etc/systemd/system/shorts-guard.service
+Unit=shorts-guard.service
+
+[Install]
+WantedBy=multi-user.target

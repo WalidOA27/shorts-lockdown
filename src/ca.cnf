@@ -1,0 +1,11 @@
+[req]
+distinguished_name=dn
+prompt=no
+x509_extensions=v3
+[dn]
+CN=shorts-guard local CA (127.0.0.1 only)
+[v3]
+basicConstraints=critical,CA:TRUE,pathlen:0
+keyUsage=critical,keyCertSign,cRLSign
+nameConstraints=critical,permitted;IP:127.0.0.1/255.255.255.255,permitted;DNS:localhost
+subjectKeyIdentifier=hash

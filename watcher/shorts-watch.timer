@@ -1,0 +1,7 @@
+[Unit]
+Description=Watch remote shorts-guard every 10 min
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=10min
+[Install]
+WantedBy=timers.target

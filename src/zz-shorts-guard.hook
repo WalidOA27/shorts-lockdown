@@ -1,0 +1,17 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = librewolf
+Target = firefox
+Target = freetube
+Target = chromium
+Target = google-chrome
+Target = brave-bin
+Target = vivaldi
+Target = yt-dlp
+
+[Action]
+Description = shorts-guard: re-applying
+When = PostTransaction
+Exec = /usr/bin/python3 -I /usr/local/lib/shorts-guard/apply.py

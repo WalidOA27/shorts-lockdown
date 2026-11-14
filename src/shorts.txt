@@ -1,0 +1,47 @@
+! Title: shorts-guard
+! Expires: 12 hours
+! Feed / player APIs used only by Shorts
+||youtube.com/youtubei/v1/reel/$important
+||youtube.com/shorts/$document,important
+||youtube.com/feed/shorts$document,important
+! Shorts player containers (in case of in-app navigation)
+youtube.com##ytd-shorts video:remove()
+youtube.com##ytd-shorts
+youtube.com##ytd-reel-video-renderer video:remove()
+youtube.com##ytd-reel-video-renderer
+youtube.com##ytm-shorts-player-page video:remove()
+youtube.com##ytm-shorts-player-page
+! Shelves / items
+youtube.com##ytd-reel-shelf-renderer
+youtube.com##ytd-rich-shelf-renderer[is-shorts]
+youtube.com##ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts])
+youtube.com##grid-shelf-view-model:has(a[href^="/shorts/"])
+youtube.com##ytd-rich-item-renderer:has(a[href^="/shorts/"])
+youtube.com##ytd-video-renderer:has(a[href^="/shorts/"])
+youtube.com##ytd-grid-video-renderer:has(a[href^="/shorts/"])
+youtube.com##ytd-compact-video-renderer:has(a[href^="/shorts/"])
+youtube.com##yt-lockup-view-model:has(a[href^="/shorts/"])
+youtube.com##ytm-shorts-lockup-view-model
+youtube.com##ytm-shorts-lockup-view-model-v2
+youtube.com##ytd-reel-item-renderer
+! Navigation entries / tabs / chips
+youtube.com##ytd-guide-entry-renderer:has(a[title="Shorts"])
+youtube.com##ytd-mini-guide-entry-renderer:has(a[title="Shorts"])
+youtube.com##ytd-guide-entry-renderer:has(a[href^="/shorts"])
+youtube.com##ytd-mini-guide-entry-renderer:has(a[href^="/shorts"])
+youtube.com##yt-tab-shape[tab-title="Shorts"]
+youtube.com##tp-yt-paper-tab:has-text(/^\s*Shorts\s*$/)
+youtube.com##yt-chip-cloud-chip-renderer:has-text(/^\s*Shorts\s*$/)
+youtube.com##chip-view-model:has-text(/^\s*Shorts\s*$/)
+youtube.com##ytm-pivot-bar-item-renderer:has(.pivot-shorts)
+youtube.com##a[href^="/shorts/"]
+! Any video YouTube marks as Shorts-eligible gets no streams (in-app navigation, /watch?v=, embeds)
+youtube.com,youtube-nocookie.com##+js(json-edit-fetch-response, ..playerMicroformatRenderer[?.isShortsEligible==true];$..streamingData, propsToMatch, /youtubei/v1/player)
+youtube.com,youtube-nocookie.com##+js(json-edit-xhr-response, ..playerMicroformatRenderer[?.isShortsEligible==true];$..streamingData, propsToMatch, /youtubei/v1/player)
+youtube.com,youtube-nocookie.com##+js(edit-object-on-setter, ytInitialPlayerResponse, ..playerMicroformatRenderer[?.isShortsEligible==true];$..streamingData)
+! Shorts player can never start playback (trusted: list served over local HTTPS)
+youtube.com##+js(trusted-override-element-method, HTMLMediaElement.prototype.play, #shorts-player video, throw)
+youtube.com##+js(trusted-override-element-method, HTMLMediaElement.prototype.play, ytd-reel-video-renderer video, throw)
+youtube.com##+js(trusted-override-element-method, HTMLMediaElement.prototype.play, ytd-shorts video, throw)
+youtube.com##+js(trusted-override-element-method, HTMLMediaElement.prototype.play, ytm-shorts-player-page video, throw)
+youtube.com##+js(trusted-override-element-method, HTMLMediaElement.prototype.play, ytm-reel-player-overlay-renderer video, throw)

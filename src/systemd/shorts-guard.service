@@ -1,0 +1,7 @@
+[Unit]
+Description=shorts-guard enforce
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 -I /usr/local/lib/shorts-guard/apply.py
+Nice=10
